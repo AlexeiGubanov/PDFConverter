@@ -24,8 +24,12 @@ public class FindAllPassendStrings {
         String typeOperation="";
         for (int i = 0; i <allLines.length ; i++) {
             String nextLine = allLines[i];
-nextLine.trim();
+            if(nextLine.contains("\r")){
+                nextLine=nextLine.substring(0,nextLine.length()-1);
+            }
+nextLine=nextLine.trim();
            String[]lineContens= nextLine.split(" ");
+
  String lastWordOfLine=lineContens[lineContens.length-1];
 
             //find first String with contaning at the end Double without $
@@ -34,7 +38,10 @@ nextLine.trim();
                 ManualCalculationItem manualCalculationItem=new ManualCalculationItem();
 //defining Type of Operation
                 String beforeLine=allLines[i-1];
-                beforeLine.trim();
+                if(beforeLine.contains("\r")){
+                    beforeLine=beforeLine.substring(0,beforeLine.length()-1);
+                }
+                 beforeLine=beforeLine.trim();
                 String[]lineContensbeforeLine= beforeLine.split(" ");
                 String lastWordofbeforeLine=lineContensbeforeLine[lineContensbeforeLine.length-1];
                 if (!lastWordofbeforeLine.matches("-?[0-9]+\\.[\\d]+")){
